@@ -36,7 +36,7 @@ const lenovoTask = () => {
 
 
     let token, continue_day;
-
+    logger("開始簽到任務");
     rp.post({ url: url_login, headers: config.headers.login, formData: data_login })
         .then(res => JSON.parse(res))
         .then(res => {
