@@ -6,7 +6,7 @@ let logger = (msg, name) => {
     let dum = nowTime.toString().search(/ \(.*/);
     let logstr = `[${name}, ${nowTime.substr(0, dum)}]: ${msg}`;
     console.log(logstr);
-    fs.appendFileSync('log.txt', logstr + '\n');
+    fs.appendFileSync(__dirname + '/log.txt', logstr + '\n');
 }
 
 const lenovoTask = async (name, account, password) => {
@@ -16,7 +16,7 @@ const lenovoTask = async (name, account, password) => {
     const url_jointask = "https://mclub.lenovo.com.cn/signchallengetask";
 
 
-    let config = JSON.parse(fs.readFileSync("config.json"));
+    let config = JSON.parse(fs.readFileSync(__dirname + "/config.json"));
 
     let buff = new Buffer.from(password);
     let base64pw = buff.toString('base64');

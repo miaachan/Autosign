@@ -2,8 +2,7 @@ const schedule = require('node-schedule');
 const lenovo = require('./lenovo');
 const fs = require('fs');
 
-let secret = JSON.parse(fs.readFileSync("secret.json"));
-
+let secret = JSON.parse(fs.readFileSync(__dirname + "/secret.json"));
 
 const wrapper = async () => {
     for (let i = 0; i < secret.LENOVOCLUB.length; i++) {
