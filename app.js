@@ -13,9 +13,10 @@ const wrapper = async () => {
 
 
 const signTask = () => {
-    schedule.scheduleJob('5 21 7 * * *', () => {
+    schedule.scheduleJob('21 7 0 * * *', () => {
         wrapper();
     })
 }
+console.log(`*** AUTOSIGN IS NOW RUNNING ***`)
 signTask(); //啓動定時任務
 
