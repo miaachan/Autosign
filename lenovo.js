@@ -48,18 +48,20 @@ const lenovoTask = async (name, account, password) => {
             token = res.match(/CONFIG\.token = "\w{40}/)[0].substr(-40);
             continue_day = res.match(/><b>.{1,8}/) ? res.match(/><b>.{1,8}/)[0].substr(-8).replace(/进行中/, "") : " 1";
             return rp.post({
-                url: url_jointask, headers: config.headers.sign, gzip: true,
+                url: url_jointask, headers: config.headers.jointask, gzip: true,
+                resolveWithFullResponse: true,
                 form: {
                     '_token': token,
-                    'task_id': '3'
+                    'task_id': '6'
                 }
             })
         })
         .then((res) => {
-            res = JSON.parse(res);
-            if (res['code'])
-                logger(`帳號: ${account} 參加10日連續簽到任務`, name);
-
+            if (res.statusCode == 200) {
+                res = JSON.parse(res.body);
+                if (res['code'])
+                    logger(`帳號: ${account} 參加10日連續簽到任務`, name);
+            }
             return rp.post({
                 url: url_signadd, headers: config.headers.sign, gzip: true,
                 form: {

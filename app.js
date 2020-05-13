@@ -19,4 +19,3 @@ const signTask = () => {
 }
 console.log(`*** AUTOSIGN IS NOW RUNNING ***`)
 signTask(); //啓動定時任務
-
